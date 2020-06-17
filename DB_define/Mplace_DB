@@ -6,7 +6,7 @@ age             -  NUMBER       // 나이
 placebook       -  varchar2     // FK   가이드북리스트 연동
 USER_NUMBER     -  NUMBER       // 테이블 데이터개수 
 
-
+ 
 2.FRIEND_LIST                   // 친구테이블 유저A -(친구수락=열람허가)-> 유저B : 유저B는 A의 가이드북 열람가능
 USER_ID_A       -  varchar2     // 사용자A  친구요청수락
 USER_ID_B       -  varchar2     // 사용자B  친구요청자
@@ -14,7 +14,7 @@ FRIEND_SETTING  -  varchar2     // FK  기본:공개 , 숨김이나 차단시 �
 FRIEND_LIST_NUMBER   -  varchar2    //테이블 데이터개수 
 
 2-1.FRIEND_SETTING
-FRIEND_SETTING  -   varchar2        // PK
+FRIEND_SETTING  -   varchar2        // PK 상태표시
 hide            -   varchar2        // 숨김여부
 block           -   varchar2        // 차단여부
 
@@ -25,10 +25,17 @@ PLACE_NUMBER        - varchar2
 PlACE_NAME          - varchar2
 location            - varchar2
 date                - DATE
-post                - varchar2
+post                - varchar2    //FK
 
 
 4.POST_LIST
+POST                - varchar2     // PK
+POST_NUMBER        - varchar2
+POST_NAME          - varchar2       //
+location            - varchar2
+date                - DATE
+picture             - varchar2
+
 
 
 
