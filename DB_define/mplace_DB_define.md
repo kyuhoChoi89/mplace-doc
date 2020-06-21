@@ -33,53 +33,56 @@ The following libraries and their dependencies will be used:
 
 | Column Name | Data Type   | NULL | Default   | KEY | Extra 
 | ---         | ---         | ---  | ---       | --- | ---
-| id          | INT         | NO   | -         | PK  | auto_increment for user id
-| userId      | VARCHAR(50) | NO   | -         | PK  | user Id
-| password    | VARCHAR(50) | NO   | -     |     | password for user
-| name        | VARCHAR(50) | NO   | -     |     |
-| age         | INT         | NO   | -     |     |
-| placebook   | VARCHAR(50) | NO   | -         |     | 가이드북리스트 연동??
-| USER_NUMBER | INT         | NO   | -         |     | 테이블 데이터개수??
+| user_id      | INT         | NO   | -        | PK  | auto_increment for user id
+| login_id    | VARCHAR(50) | NO   | -         |     | user Id ex. kyuho.choi
+| password    | VARCHAR(50) | NO   | -     |     | password for user ex. password
+| name        | VARCHAR(50) | NO   | -     |     | nickname ex. nickname
+| age         | INT         |      | -     |     |
+| email       | VARCHAR(50) |      | -     |     |
 | regist_date | DATETIME    | NO   | CURDATE   |     |
 | regist_user | INT         | NO   | -         |     |
 | update_date | DATETIME    | NO   | CURDATE   |     |
 | update_user | INT         | NO   | -         |     |
 
-### Table: FRIEND_LIST
+### Table: FRIEND
 
-- 친구테이블 유저A -(친구수락=열람허가)-> 유저B : 유저B는 A의 가이드북 열람가능
+- 
+
+#### Columns:
+
+| Column Name  | Data Type   | NULL | Default   | KEY | Extra 
+| ---          | ---         | ---  | ---       | --- | ---
+| friend_id    | INT         | NO   | -         | PK  | auto_increment for friend table
+| receiver_id  | INT         | NO   | -         |     | 사용자A  친구요청수락 ex. 1(kyuho)
+| requester_id | INT         | NO   | -         |     | 사용자B  친구요청자 ex. 2(jonglyul)
+| deleted      | INT         | NO   | -         |     | 0 아직 처리되지 않은 요청 1 이미 처리된 요청
+| accepted     | INT         |      | -         |     | 0 친구 승낙이 받아들여지지 않음 1 친구 요청 승낙됨
+| blocked      | INT         |      | -         |     | 0 아직 친구 1 절교
+| regist_date  | DATETIME    | NO   | CURDATE   |     |
+| regist_user  | INT         | NO   | -         |     |
+| update_date  | DATETIME    | NO   | CURDATE   |     |
+| update_user  | INT         | NO   | -         |     |
+
+
+### Table: PlACEBOOK
+
+- 마이 플레이스 모음집
 
 #### Columns:
 
 | Column Name | Data Type   | NULL | Default   | KEY | Extra 
 | ---         | ---         | ---  | ---       | --- | ---
-| USER_ID_A   | VARCHAR(50)         | NO   | -         |   | 사용자A  친구요청수락
-| USER_ID_B   | VARCHAR(50) | NO   | -         |   | 사용자B  친구요청자
-| FRIEND_SETTING    | VARCHAR(50) | NO   | -     | FK  | 기본:공개 , 숨김이나 차단시 변경
-| FRIEND_LIST_NUMBER        | VARCHAR(50) | NO   | -     |     | 테이블 데이터개수 
-| regist_date | DATETIME    | NO   | CURDATE   |     |
-| regist_user | INT         | NO   | -         |     |
-| update_date | DATETIME    | NO   | CURDATE   |     |
-| update_user | INT         | NO   | -         |     |
-
-### Table: FRIEND_SETTING
-
-- 유저정보를 담은 테이블
-
-#### Columns:
-
-| Column Name | Data Type   | NULL | Default   | KEY | Extra 
-| ---         | ---         | ---  | ---       | --- | ---
-| FRIEND_SETTING          | VARCHAR(50)   | NO   | -         |  PK | 상태표시
-| hide      | VARCHAR(50) | NO   | -         |   | 숨김여부
-| block    | VARCHAR(50) | NO   | -     |     | 차단여부
+| placebook_id| INT         | NO   | -         | PK  | auto_increment for PlACEBOOK table
+| user_id      | INT         | NO   | -     |     | placebook owner id
+| title       | VARCHAR(50) | NO   | -     |     | title 
+| image_name  | VARCHAR(50) | NO   | -     |     | directory for image
 | regist_date | DATETIME    | NO   | CURDATE   |     |
 | regist_user | INT         | NO   | -         |     |
 | update_date | DATETIME    | NO   | CURDATE   |     |
 | update_user | INT         | NO   | -         |     |
 
 
-### Table: PlACEBOOK_LIST
+### Table: POST
 
 - 
 
@@ -87,19 +90,20 @@ The following libraries and their dependencies will be used:
 
 | Column Name | Data Type   | NULL | Default   | KEY | Extra 
 | ---         | ---         | ---  | ---       | --- | ---
-| placebook          | VARCHAR(50)         | NO   | -         | PK  | 
-| PLACE_NUMBER      | VARCHAR(50) | NO   | -         |   | 
-| PlACE_NAME    | VARCHAR(50) | NO   | -     |     | 
-| location        | VARCHAR(50) | NO   | -     |     |
-| date         | DATETIME         | NO   | -     |     |
-| post   | VARCHAR(50) | NO   | -         |  FK  | 
+| post_id     | INT         | NO   | -         | PK  | auto_increment for POST table
+| user_id     | INT         | NO   | -     |     | placebook owner id
+| placebook_id| INT         | NO   | -         | FK  | PlACEBOOK table id
+| title       | VARCHAR(50) | NO   | -         |     | title
+| content     | VARCHAR(2048) | NO   | -     |     | contents 
+| rate        | DOUBLE      | NO   | -     |     | rate
+| location    | VARCHAR(50) | NO   | -     |     | 위도 경도 값 38, 40
 | regist_date | DATETIME    | NO   | CURDATE   |     |
 | regist_user | INT         | NO   | -         |     |
 | update_date | DATETIME    | NO   | CURDATE   |     |
 | update_user | INT         | NO   | -         |     |
 
 
-### Table: POST_LIST
+### Table: POST_IMAGE
 
 - 
 
@@ -107,19 +111,13 @@ The following libraries and their dependencies will be used:
 
 | Column Name | Data Type   | NULL | Default   | KEY | Extra 
 | ---         | ---         | ---  | ---       | --- | ---
-| POST          | INT         | NO   | -         | PK  | 
-| POST_NUMBER      | VARCHAR(50) | NO   | -         |   | 
-| POST_NAME    | VARCHAR(50) | NO   | -     |     | 
-| location        | VARCHAR(50) | NO   | -     |     |
-| date         | INT         | NO   | -     |     |
-| picture   | VARCHAR(50) | NO   | -         |     | 
+| image_id    | INT         | NO   | -         | PK  | auto_increment for POST_IMAGE table
+| post_id     | INT         | NO   | -         |     | placebook owner id
+| image_name  | VARCHAR(2048) | NO   | -       |     | directory for image 
 | regist_date | DATETIME    | NO   | CURDATE   |     |
 | regist_user | INT         | NO   | -         |     |
 | update_date | DATETIME    | NO   | CURDATE   |     |
 | update_user | INT         | NO   | -         |     |
-
-
-
 
 
 
