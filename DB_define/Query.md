@@ -38,7 +38,7 @@ update_user   INT          NOT NULL
 );
 
 CREATE TABLE POST(
-	post_id	        CHAR(30)  PRIMARY KEY,
+	post_id	        CHAR(30)  NOT NULL  PRIMARY KEY,
     user_id	        INT  NOT NULL,
     placebook_id    INT  NOT NULL,
     title      	    VARCHAR(50)  NOT NULL,
