@@ -1,4 +1,4 @@
-## TABLE CREATE
+use mplace;
 CREATE TABLE USER(
  user_id      INT          NOT NULL   PRIMARY KEY ,
  login_id     VARCHAR(50)  NOT NULL  ,
@@ -38,30 +38,28 @@ update_user   INT          NOT NULL
 );
 
 CREATE TABLE POST(
-	post_id	        CHAR(30)  NOT NULL  PRIMARY KEY,
-    user_id	        INT  NOT NULL,
-    placebook_id    INT  NOT NULL,
-    title      	    VARCHAR(50)  NOT NULL,
-    content	        VARCHAR(2048) NOT NULL,
-    rate	        DOUBLE PRIMARY KEY NOT NULL,
-    location	    VARCHAR(50) NOT NULL,
-    regist_date     DATETIME NOT NULL ,
-	regist_user     INT  NOT NULL,
-	update_date     DATETIME NOT NULL ,
-	update_user     INT       
+	post_id	CHAR(30)  		PRIMARY KEY,
+    user_id	INT  			NOT NULL,
+    placebook_id INT  		NOT NULL,
+    title	VARCHAR(50) 	NOT NULL,
+    content	VARCHAR(2048) 	NOT NULL,
+    rate	DOUBLE  		NOT NULL,
+    location	VARCHAR(50) NOT NULL,
+    regist_date DATETIME 	NOT NULL ,
+	regist_user INT  		NOT NULL,
+	update_date  DATETIME 	NOT NULL ,
+	update_user  INT       	NOT NULl
 
 );
 
 CREATE TABLE POST_IMAGE(
-	image_id     INT          NOT NULL   PRIMARY KEY ,
-	post_id      INT          NOT NULL      ,
-	image_name   VARCHAR(2048)  NOT NULL    ,
-	regist_date  DATETIME     NOT NULL      ,
-	regist_user  INT          NOT NULL      ,
-	update_date  DATETIME     NOT NULL      ,
-	update_user  INT          NOT NULL      
+	image_id     INT          	NOT NULL   PRIMARY KEY ,
+	post_id      INT          	NOT NULL      ,
+	image_name   VARCHAR(2048)  NOT NULL        ,
+	regist_date  DATETIME     	NOT NULL      ,
+	regist_user  INT          	NOT NULL      ,
+	update_date  DATETIME     	NOT NULL      ,
+	update_user  INT          	NOT NULL      
 );
-
-## COLUMNS CREATE
 
 
